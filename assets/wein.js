@@ -40,3 +40,8 @@ document.addEventListener('click',event=>{
  const frame=document.createElement('iframe');frame.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1';frame.title='OMEGA ARIS — '+choice.dataset.videoTitle;frame.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';frame.allowFullscreen=true;frame.referrerPolicy='strict-origin-when-cross-origin';player.replaceChildren(frame);
  document.querySelectorAll('.w-omega-filmstrip [data-omega-video]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.omegaVideo===id)));
 });
+document.querySelectorAll('[data-research-library]').forEach(library=>{
+ const input=library.querySelector('[data-research-search]'),buttons=[...library.querySelectorAll('[data-research-topic]')],cards=[...library.querySelectorAll('[data-research-card]')],status=library.querySelector('[data-research-status]'),more=library.querySelector('[data-research-more]');let topic='All',limit=12;
+ const filter=()=>{const query=input.value.trim().toLowerCase();const matches=cards.filter(card=>(topic==='All'||card.dataset.topic===topic)&&card.textContent.toLowerCase().includes(query));cards.forEach(card=>card.hidden=true);matches.slice(0,limit).forEach(card=>card.hidden=false);more.hidden=matches.length<=limit;status.textContent=matches.length?`Showing ${Math.min(limit,matches.length)} of ${matches.length} articles.`:'No matching articles. Try another topic or search.'};
+ input.addEventListener('input',()=>{limit=12;filter()});buttons.forEach(button=>button.addEventListener('click',()=>{topic=button.dataset.researchTopic;limit=12;buttons.forEach(b=>b.setAttribute('aria-pressed',String(b===button)));filter()}));more.addEventListener('click',()=>{limit+=12;filter()});filter();
+});
