@@ -2,7 +2,7 @@
   "repository": "weinproductsmarketing-eng/weinproducts-fullsite-preview",
   "source_repository": "weinproductsmarketing-eng/weinproducts-fullsite",
   "base_path": "/weinproducts-fullsite-preview/",
-  "source_commit": "0ef7180794c4ca56c2ab6d19fd4a7b74abbf6ee2",
+  "source_commit": "9df24e8599e1ddc8263833285d0295e0851835cd",
   "route_count": 40,
   "preview_only": true,
   "files": [
